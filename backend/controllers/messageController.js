@@ -23,7 +23,7 @@ export const sendMessage = async (req, res) => {
     }
     await getConversation.save();
     return res.status(200).json({
-      Message: "Message sent successfully",
+      newMessage,
     });
   } catch {
     console.log(error);

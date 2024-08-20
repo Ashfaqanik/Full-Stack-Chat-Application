@@ -72,7 +72,7 @@ function Login() {
           <div className="mt-6">
             <button
               type="submit"
-              className="btn btn-block btn-sm mt-2 border border-slate-700 bg-slate-400 text-black "
+              className="btn btn-block btn-sm mt-2 border border-slate-700 bg-slate-400 text-black hover:text-slate-500"
             >
               Sign in
             </button>

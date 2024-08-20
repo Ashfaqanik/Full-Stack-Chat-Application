@@ -1,28 +1,45 @@
-import React from "react";
-import SendInput from "./SendInput";
+import React, { useEffect } from "react";
 import Messages from "./Messages";
+import { useSelector } from "react-redux";
+import SendMessage from "./SendMessage";
+import { useDispatch } from "react-redux";
+import { setSelectedUser } from "../redux/userSlice";
 
 function MessageContainer() {
+  const dispatch = useDispatch();
+  const { selectedUser, authUser } = useSelector((store) => store.user);
+  useEffect(() => {
+    return () => dispatch(setSelectedUser(null));
+  }, [dispatch]);
   return (
-    <div className="md:min-w-[550px] flex flex-col">
-      <div className="flex gap-4 items-center bg-zinc-800 px-4 py-2 mb-2">
-        <div className="avatar online">
-          <div className="w-12 rounded-full">
-            <img
-              src="https://lh6.googleusercontent.com/proxy/ZLGihPRfkkerdJBqfRKKFRWQcXDCfMMuuK_6_IDH6Mfhu0VI3Du2L9eOTiz0yKsIftOesQQnj0whQCZFudjFH-cXgBKnebrpknuWtjKkDcRC5Ik"
-              alt="user-profile"
-            />
+    <>
+      {selectedUser ? (
+        <div className="md:min-w-[550px] flex flex-col">
+          <div className="flex gap-4 items-center bg-zinc-800 px-4 py-2 mb-2">
+            <div className="avatar online">
+              <div className="w-12 rounded-full">
+                <img src={selectedUser?.profilePhoto} alt="user-profile" />
+              </div>
+            </div>
+            <div>
+              <div>
+                <p className="text-white">{selectedUser?.username}</p>
+              </div>
+            </div>
           </div>
+          <Messages />
+          <SendMessage />
         </div>
-        <div>
-          <div>
-            <p className="text-white">Ashfaque</p>
-          </div>
+      ) : (
+        <div className="md:min-w-[550px] flex flex-col items-center justify-center">
+          <h1 className="text-white font-bold text-xl">
+            Hi {authUser?.fullName}
+          </h1>
+
+          <h1 className="text-white font-normal">Let's Start Conversations</h1>
         </div>
-      </div>
-      <Messages />
-      <SendInput />
-    </div>
+      )}
+    </>
   );
 }
 

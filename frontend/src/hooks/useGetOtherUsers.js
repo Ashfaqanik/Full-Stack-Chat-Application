@@ -17,7 +17,7 @@ function useGetOtherUsers() {
       }
     };
     fetchOtherUsers();
-  });
+  }, []);
 }
 
 export default useGetOtherUsers;
