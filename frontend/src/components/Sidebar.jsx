@@ -4,18 +4,23 @@ import { FaSearch } from "react-icons/fa";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setAuthUser, setSelectedUser } from "../redux/userSlice";
+import { TbLogout2 } from "react-icons/tb";
 
 function Sidebar() {
   const [search, setSearch] = useState("");
   const [chatList, setChatList] = useState([]);
   const { otherUsers } = useSelector((store) => store.user);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const logoutHandler = async () => {
     try {
       const res = await axios.get("http://localhost:8080/api/v1/user/logout");
-      navigate("/login");
+      navigate("/");
       toast.success(res.data.message);
+      dispatch(setAuthUser(null));
+      dispatch(setSelectedUser(null));
     } catch (error) {
       console.log(error);
     }
@@ -42,6 +47,13 @@ function Sidebar() {
         action=""
         className="flex items-center gap-2"
       >
+        <TbLogout2
+          style={{ cursor: "pointer" }}
+          onClick={logoutHandler}
+          color="silver"
+          text="black"
+          size="40px"
+        />
         <input
           value={search}
           onChange={(e) => searchText(e.target.value)}
@@ -58,14 +70,6 @@ function Sidebar() {
       </form>
       <div className="divider "></div>
       <OtherUsers userList={chatList} />
-      <div className="mt-2">
-        <button
-          onClick={logoutHandler}
-          className="btn btn-sm bg-slate-200 text-black"
-        >
-          Logout
-        </button>
-      </div>
     </div>
   );
 }

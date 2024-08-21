@@ -1,22 +1,22 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Messages from "./Messages";
 import { useSelector } from "react-redux";
 import SendMessage from "./SendMessage";
-import { useDispatch } from "react-redux";
-import { setSelectedUser } from "../redux/userSlice";
 
 function MessageContainer() {
-  const dispatch = useDispatch();
-  const { selectedUser, authUser } = useSelector((store) => store.user);
-  useEffect(() => {
-    return () => dispatch(setSelectedUser(null));
-  }, [dispatch]);
+  const { selectedUser, authUser, onlineUsers } = useSelector(
+    (store) => store.user
+  );
+  const isOnline = onlineUsers?.includes(selectedUser?._id);
+  //   useEffect(() => {
+  //     return () => dispatch(setSelectedUser(null));
+  //   }, [dispatch]);
   return (
     <>
       {selectedUser ? (
         <div className="md:min-w-[550px] flex flex-col">
           <div className="flex gap-4 items-center bg-zinc-800 px-4 py-2 mb-2">
-            <div className="avatar online">
+            <div className={`avatar ${isOnline ? "online" : ""}`}>
               <div className="w-12 rounded-full">
                 <img src={selectedUser?.profilePhoto} alt="user-profile" />
               </div>

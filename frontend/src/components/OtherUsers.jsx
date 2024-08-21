@@ -7,7 +7,6 @@ function OtherUsers({ userList }) {
   useGetOtherUsers();
   const { otherUsers } = useSelector((store) => store.user);
   if (!otherUsers) return;
-  console.log(userList);
   return (
     <>
       {userList.length == 0 ? (

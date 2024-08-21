@@ -40,7 +40,13 @@ function Message({ message }) {
         </time>
       </div>
 
-      <div className="chat-bubble">{message?.message}</div>
+      <div
+        className={`chat-bubble ${
+          message?.senderId !== authUser?._id ? "bg-gray-200 text-black" : ""
+        } `}
+      >
+        {message?.message}
+      </div>
     </div>
   );
 }
