@@ -128,7 +128,7 @@ function Signup() {
           </div>
           <div className="flex mx-2 mt-4 justify-start">
             <p className="text-white">Already have a account?</p>
-            <Link className="text-blue-400 mx-2" to="/login">
+            <Link className="text-blue-400 mx-2" to="/">
               Sign in
             </Link>
           </div>
