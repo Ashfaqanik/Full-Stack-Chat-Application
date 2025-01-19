@@ -47,25 +47,26 @@ function Sidebar() {
       <form
         onSubmit={searchSubmitHandler}
         action=""
-        className="flex items-center gap-2"
+        className="flex flex-wrap items-center gap-2"
       >
         <TbLogout2
           style={{ cursor: "pointer" }}
           onClick={logoutHandler}
           color="silver"
           text="black"
-          size="40px"
+          size="30px"
+          className="flex-shrink-0"
         />
         <input
           value={search}
           onChange={(e) => searchText(e.target.value)}
-          className="input input-bordered rounded-md"
+          className="input input-bordered rounded-md flex-grow"
           type="text"
           placeholder="Search..."
         />
         <button
           type="submit"
-          className="btn bg-zinc-800 text-gray-300 hover:text-blue-300"
+          className="btn bg-zinc-800 text-gray-300 hover:text-blue-300 flex-shrink-0"
         >
           <FaSearch className="w-6 h-6 outline-none" />
         </button>
