@@ -47,7 +47,7 @@ function Sidebar() {
       <form
         onSubmit={searchSubmitHandler}
         action=""
-        className="flex flex-wrap items-center gap-2"
+        className="flex items-center gap-2 w-full"
       >
         <TbLogout2
           style={{ cursor: "pointer" }}
@@ -60,17 +60,18 @@ function Sidebar() {
         <input
           value={search}
           onChange={(e) => searchText(e.target.value)}
-          className="input input-bordered rounded-md flex-grow"
+          className="input input-bordered rounded-md flex-grow sm:w-[200px] w-full"
           type="text"
           placeholder="Search..."
         />
         <button
           type="submit"
-          className="btn bg-zinc-800 text-gray-300 hover:text-blue-300"
+          className="btn bg-zinc-800 text-gray-300 hover:text-blue-300 flex-shrink-0 sm:w-auto w-8 h-8"
         >
-          <FaSearch className="w-5 h-5 outline-none" />
+          <FaSearch className="w-4 h-4 outline-none" />
         </button>
       </form>
+
       <div className="divider "></div>
       <OtherUsers userList={chatList} />
     </div>
