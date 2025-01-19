@@ -68,7 +68,7 @@ function Sidebar() {
           type="submit"
           className="btn bg-zinc-800 text-gray-300 hover:text-blue-300 flex-shrink-0 sm:w-auto w-8 h-8"
         >
-          <FaSearch className="w-4 h-4 outline-none" />
+          <FaSearch className="w-6 h-6 outline-none" />
         </button>
       </form>
 
